@@ -8,7 +8,9 @@ import requests
 app = Flask(__name__)
 
 # Backend API URL
-BACKEND_API_URL = "http://backend-service:5001/fetch_price"
+import os
+BACKEND_API_URL = os.environ.get("BACKEND_URL", "http://backend:5001")
+
 
 @app.route('/')
 def index():
@@ -19,13 +21,11 @@ def index():
 
 @app.route('/fetch_price', methods=['GET'])
 def fetch_price():
-    """
-    Fetch the price from the backend service.
-    """
-    response = requests.get(BACKEND_API_URL)
+    response = requests.get(f"{BACKEND_API_URL}/fetch_price")
     if response.status_code == 200:
         return jsonify(response.json())
     return jsonify({"error": "Failed to fetch prices from backend"}), 500
+
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5002, debug=True)

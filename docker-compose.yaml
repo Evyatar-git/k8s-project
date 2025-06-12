@@ -27,7 +27,7 @@ services:
       - DB_HOST=mysqldb
       - DB_PORT=3306
       - DB_NAME=crypto_db
-      - DB_USER=root
+      - DB_USER=USER
       - DB_PASSWORD=123456
 
   mysqldb:
@@ -35,6 +35,8 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: 123456
       MYSQL_DATABASE: crypto_db
+      MYSQL_USER: USER
+      MYSQL_PASSWORD: 123456
     ports:
       - "3306:3306"
     networks:

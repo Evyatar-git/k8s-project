@@ -1,0 +1,18 @@
+replicaCount: 2
+
+image:
+  repository: evyatardocker/backend
+  tag: latest
+  pullPolicy: IfNotPresent
+
+service:
+  port: 5001
+  targetPort: 5001
+  type: ClusterIP
+
+database:
+  host: mysql
+  user: USER
+  password: "123456"
+  name: crypto_db
+  port: "3306"

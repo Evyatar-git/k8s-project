@@ -1,0 +1,14 @@
+replicaCount: 2
+
+image:
+  repository: evyatardocker/frontend
+  tag: latest
+  pullPolicy: IfNotPresent
+
+service:
+  port: 80
+  targetPort: 5002
+  type: LoadBalancer
+
+env:
+  BACKEND_URL: "http://backend:5001"
